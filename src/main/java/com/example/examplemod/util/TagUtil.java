@@ -20,7 +20,10 @@ public class TagUtil {
      */
     public static boolean hasTag(Player player, String tagNamespace, String tagPath) {
         ResourceLocation tagId = ResourceLocation.fromNamespaceAndPath(tagNamespace, tagPath);
-        return player.getTags().contains(tagId.toString());
+        if(tagNamespace != "") {
+            return player.getTags().contains(tagId.toString());
+        }
+        return player.getTags().contains(tagPath);
     }
 
     /**
