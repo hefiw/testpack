@@ -108,8 +108,14 @@ public class ItemUsageRestrictionHandler {
      */
     @SubscribeEvent
     public static void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
+        if (event.isCanceled()) return;
+
         Player player = event.getEntity();
         ItemStack itemStack = event.getItemStack();
+
+        if (isIronSpellItem(itemStack)) {
+            return;
+        }
 
         if (!canPlayerUseItem(player, itemStack)) {
             event.setCanceled(true);
@@ -131,8 +137,14 @@ public class ItemUsageRestrictionHandler {
      */
     @SubscribeEvent
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+        if (event.isCanceled()) return;
+        
         Player player = event.getEntity();
         ItemStack itemStack = event.getItemStack();
+
+        if (isIronSpellItem(itemStack)) {
+            return;
+        }
 
         if (!canPlayerUseItem(player, itemStack)) {
             event.setCanceled(true);

@@ -69,6 +69,8 @@ public class MagicRestrictionHandler {
 
     @SubscribeEvent
     public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
+        if (event.isCanceled()) return;
+
         Player player = event.getEntity();
         ItemStack stack = event.getItemStack();
 
