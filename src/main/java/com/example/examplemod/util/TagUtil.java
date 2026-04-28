@@ -2,6 +2,7 @@ package com.example.examplemod.util;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 
 /**
@@ -19,16 +20,17 @@ public class TagUtil {
      */
     public static boolean hasTag(Player player, String tagNamespace, String tagPath) {
         ResourceLocation tagId = ResourceLocation.fromNamespaceAndPath(tagNamespace, tagPath);
-        return player.getTags().anyMatch(tag -> tag.equals(tagId.toString()));
+        return player.getTags().contains(tagId.toString());
     }
 
     /**
      * Создаёт TagKey для игрока
+     *
      * @param namespace пространство имен
-     * @param path путь тега
+     * @param path      путь тега
      * @return созданный TagKey
      */
-    public static TagKey<Player> createPlayerTag(String namespace, String path) {
+    public static TagKey<EntityType<?>> createPlayerTag(String namespace, String path) {
         ResourceLocation tagId = ResourceLocation.fromNamespaceAndPath(namespace, path);
         return TagKey.create(net.minecraft.core.registries.Registries.ENTITY_TYPE, tagId);
     }
