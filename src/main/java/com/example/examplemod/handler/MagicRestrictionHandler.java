@@ -27,7 +27,8 @@ public class MagicRestrictionHandler {
      * @return true если использование магии разрешено, false если запрещено
      */
     public static boolean canPlayerUseMagic(Player player) {
-        return TagUtil.hasTag(player, MAGIC_CLASS_TAG_NAMESPACE, MAGIC_CLASS_TAG_PATH);
+        return player.getTags().contains(MAGIC_CLASS_TAG_PATH);
+        //return TagUtil.hasTag(player, MAGIC_CLASS_TAG_NAMESPACE, MAGIC_CLASS_TAG_PATH);
     }
 
     /**
@@ -70,13 +71,13 @@ public class MagicRestrictionHandler {
     @SubscribeEvent
     public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
         Player player = event.getEntity();
+        if (player.level().isClientSide) return;
         ItemStack stack = event.getItemStack();
 
         // Проверяем только предметы из Iron's Spells 'n Spellbooks
         if (!isIronSpellItem(stack)) {
             return;
         }
-        System.out.println("1");
 
         // Если у игрока нет тега для использования магии - отменяем действие
         if (!canPlayerUseMagic(player)) {

@@ -23,7 +23,9 @@ public class TagUtil {
         if(tagNamespace != "") {
             return player.getTags().contains(tagId.toString());
         }
-        return player.getTags().contains(tagPath);
+        else {
+            return player.getTags().contains(tagPath);
+        }
     }
 
     /**
