@@ -81,6 +81,10 @@ public class ExampleMod {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
+        // Register event handlers for magic and item restrictions
+        NeoForge.EVENT_BUS.register(com.example.examplemod.handler.MagicRestrictionHandler.class);
+        NeoForge.EVENT_BUS.register(com.example.examplemod.handler.ItemUsageRestrictionHandler.class);
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 

@@ -1,0 +1,35 @@
+package com.example.examplemod.util;
+
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.player.Player;
+
+/**
+ * Утилита для проверки наличия тегов у игрока
+ * Используется для проверки классов из NeoOrigins и других модов
+ */
+public class TagUtil {
+
+    /**
+     * Проверяет наличие тега у игрока
+     * @param player игрок для проверки
+     * @param tagNamespace пространство имен тега (например "neoorigins")
+     * @param tagPath путь тега (например "mage_class")
+     * @return true если тег присутствует, false если отсутствует
+     */
+    public static boolean hasTag(Player player, String tagNamespace, String tagPath) {
+        ResourceLocation tagId = ResourceLocation.fromNamespaceAndPath(tagNamespace, tagPath);
+        return player.getTags().anyMatch(tag -> tag.equals(tagId.toString()));
+    }
+
+    /**
+     * Создаёт TagKey для игрока
+     * @param namespace пространство имен
+     * @param path путь тега
+     * @return созданный TagKey
+     */
+    public static TagKey<Player> createPlayerTag(String namespace, String path) {
+        ResourceLocation tagId = ResourceLocation.fromNamespaceAndPath(namespace, path);
+        return TagKey.create(net.minecraft.core.registries.Registries.ENTITY_TYPE, tagId);
+    }
+}
