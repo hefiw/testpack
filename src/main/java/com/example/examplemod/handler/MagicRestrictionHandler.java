@@ -69,8 +69,6 @@ public class MagicRestrictionHandler {
 
     @SubscribeEvent
     public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
-        if (event.isCanceled()) return;
-
         Player player = event.getEntity();
         ItemStack stack = event.getItemStack();
 
@@ -78,13 +76,13 @@ public class MagicRestrictionHandler {
         if (!isIronSpellItem(stack)) {
             return;
         }
+        System.out.println("1");
 
         // Если у игрока нет тега для использования магии - отменяем действие
         if (!canPlayerUseMagic(player)) {
             event.setCanceled(true);
             player.displayClientMessage(net.minecraft.network.chat.Component.literal("§cУ вас нет доступа к магии!"), true);
             System.out.println("[MagicBlock] Магия заблокирована для игрока: " + player.getName().getString());
-            return;
         }
     }
 }
