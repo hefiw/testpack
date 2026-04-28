@@ -44,7 +44,7 @@ public class MagicRestrictionHandler {
      * @param stack предмет для проверки
      * @return true если предмет из мода Iron's Spells
      */
-    private static boolean isIronSpellItem(ItemStack stack) {
+    public static boolean isIronSpellItem(ItemStack stack) {
         if (stack.isEmpty()) {
             return false;
         }
@@ -81,6 +81,7 @@ public class MagicRestrictionHandler {
         if (!canPlayerUseMagic(player)) {
             event.setCanceled(true);
             player.displayClientMessage(net.minecraft.network.chat.Component.literal("§cУ вас нет доступа к магии!"), true);
+            System.out.println("[MagicBlock] Магия заблокирована для игрока: " + player.getName().getString());
             return;
         }
     }

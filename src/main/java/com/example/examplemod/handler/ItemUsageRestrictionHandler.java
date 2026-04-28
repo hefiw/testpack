@@ -11,6 +11,8 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import java.util.Set;
 import java.util.HashSet;
 
+import static com.example.examplemod.handler.MagicRestrictionHandler.isIronSpellItem;
+
 /**
  * Обработчик событий для ограничения использования предметов
  * Запрещает использование предметов определённых ID игрокам без соответствующего тега класса
