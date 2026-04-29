@@ -42,28 +42,6 @@ public class MagicRestrictionHandler {
         //return TagUtil.hasTag(player, MAGIC_CLASS_TAG_NAMESPACE, MAGIC_CLASS_TAG_PATH);
     }
 
-    /**
-     * Устанавливает тег для проверки магии
-     * @param namespace пространство имен тега
-     * @param path путь тега
-     */
-    public static void setMagicClassTag(String namespace, String path) {
-        // Метод для изменения тега в runtime (если потребуется)
-    }
-
-    /**
-     * Проверяет является ли предмет магическим предметом из Iron's Spells 'n Spellbooks
-     * @param stack предмет для проверки
-     * @return true если предмет из мода Iron's Spells
-     */
-    public static boolean isIronSpellItem(ItemStack stack) {
-        if (stack.isEmpty()) {
-            return false;
-        }
-        String itemNamespace = stack.getItem().toString().split(":")[0];
-        return "irons_spellbooks".equals(itemNamespace);
-    }
-
     @SubscribeEvent
     public static void onSpellPreCast(SpellPreCastEvent event) {
         Player player = event.getEntity();

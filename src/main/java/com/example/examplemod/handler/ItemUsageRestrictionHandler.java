@@ -11,8 +11,6 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import java.util.Set;
 import java.util.HashSet;
 
-import static com.example.examplemod.handler.MagicRestrictionHandler.isIronSpellItem;
-
 /**
  * Обработчик событий для ограничения использования предметов
  * Запрещает использование предметов определённых ID игрокам без соответствующего тега класса
@@ -111,10 +109,6 @@ public class ItemUsageRestrictionHandler {
         Player player = event.getEntity();
         ItemStack itemStack = event.getItemStack();
 
-        if (isIronSpellItem(itemStack)) {
-            return;
-        }
-
         if (!canPlayerUseItem(player, itemStack)) {
             event.setCanceled(true);
 
@@ -137,10 +131,6 @@ public class ItemUsageRestrictionHandler {
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         Player player = event.getEntity();
         ItemStack itemStack = event.getItemStack();
-
-        if (isIronSpellItem(itemStack)) {
-            return;
-        }
 
         if (!canPlayerUseItem(player, itemStack)) {
             event.setCanceled(true);
