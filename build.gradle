@@ -28,6 +28,10 @@ sourceSets.main.resources {
 
 repositories {
     // Add here additional repositories if required by some of the dependencies below.
+    maven {
+        name = "Iron's Maven - Release"
+        url = "https://code.redspace.io/releases"
+    }
 }
 
 base {
@@ -118,6 +122,8 @@ configurations {
 }
 
 dependencies {
+    compileOnly "io.redspace:irons_spellbooks:${irons_spells_version}:api"
+    localRuntime "io.redspace:irons_spellbooks:${irons_spells_version}"
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
@@ -166,18 +172,19 @@ sourceSets.main.resources.srcDir generateModMetadata
 neoForge.ideSyncTask generateModMetadata
 
 // Example configuration to allow publishing using the maven-publish plugin
-publishing {
-    publications {
-        register('mavenJava', MavenPublication) {
-            from components.java
+    publishing {
+        publications {
+            register('mavenJava', MavenPublication) {
+                from components.java
+            }
+        }
+        repositories {
+            maven {
+                url "file://${project.projectDir}/repo"
+            }
         }
     }
-    repositories {
-        maven {
-            url "file://${project.projectDir}/repo"
-        }
-    }
-}
+
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation

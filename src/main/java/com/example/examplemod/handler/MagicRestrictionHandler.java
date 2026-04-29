@@ -1,13 +1,24 @@
 package com.example.examplemod.handler;
 
 import com.example.examplemod.util.TagUtil;
+import io.redspace.ironsspellbooks.api.magic.MagicData;
+import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
+import io.redspace.ironsspellbooks.api.events.SpellPreCastEvent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+
+import static io.redspace.ironsspellbooks.api.registry.AttributeRegistry.MANA_REGEN;
+import static io.redspace.ironsspellbooks.api.registry.AttributeRegistry.MAX_MANA;
 
 /**
  * Обработчик событий для ограничения использования магии из Iron's Spells 'n Spellbooks
@@ -53,37 +64,15 @@ public class MagicRestrictionHandler {
         return "irons_spellbooks".equals(itemNamespace);
     }
 
-    /**
-     * Событие тика игрока - проверка возможности использования магии
-     * Здесь можно добавлять дополнительную логику проверки
-     */
-    /**@SubscribeEvent
-    public static void onPlayerTick(PlayerTickEvent.Pre event) {
-        Player player = event.getEntity();
-
-        // Пример логирования для отладки
-        if (!canPlayerUseMagic(player)) {
-            player.sendSystemMessage(Component.literal("У вас нет доступа к магии!"));
-            return;
-        }
-    }*/
-
     @SubscribeEvent
-    public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
+    public static void onSpellPreCast(SpellPreCastEvent event) {
         Player player = event.getEntity();
-        if (player.level().isClientSide) return;
-        ItemStack stack = event.getItemStack();
-
-        // Проверяем только предметы из Iron's Spells 'n Spellbooks
-        if (!isIronSpellItem(stack)) {
-            return;
-        }
+        if (!(player instanceof ServerPlayer)) return;
 
         // Если у игрока нет тега для использования магии - отменяем действие
         if (!canPlayerUseMagic(player)) {
             event.setCanceled(true);
             player.displayClientMessage(net.minecraft.network.chat.Component.literal("§cУ вас нет доступа к магии!"), true);
-            System.out.println("[MagicBlock] Магия заблокирована для игрока: " + player.getName().getString());
         }
     }
 }
