@@ -82,6 +82,7 @@ public class ExampleMod {
 
         // Register event handlers for magic and item restrictions
         NeoForge.EVENT_BUS.register(com.example.examplemod.handler.MagicRestrictionHandler.class);
+        // Register race and class selection handlers
         //NeoForge.EVENT_BUS.register(com.example.examplemod.handler.ItemUsageRestrictionHandler.class);
 
         // Register the item to a creative tab

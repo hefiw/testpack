@@ -10,5 +10,18 @@
   "examplemod.configuration.logDirtBlock": "Log Dirt Block",
   "examplemod.configuration.magicNumberIntroduction": "Magic Number Text",
   "examplemod.configuration.magicNumber": "Magic Number",
-  "message.examplemod.cannot_use_item": "You cannot use this item (%s) without the required class!"
+  "message.examplemod.cannot_use_item": "You cannot use this item (%s) without the required class!",
+
+  "screen.examplemod.race_class_selection.title": "Race and Class Selection",
+  "gui.examplemod.confirm": "Confirm Selection",
+
+  "race.examplemod.pixie": "Pixie",
+  "race.examplemod.pixie.desc": "Small flying race",
+  "race.examplemod.human": "Human",
+  "race.examplemod.human.desc": "Standard race",
+
+  "class.examplemod.mage": "Mage",
+  "class.examplemod.mage.desc": "Uses magic",
+  "class.examplemod.warrior": "Warrior",
+  "class.examplemod.warrior.desc": "Melee combat master"
 }

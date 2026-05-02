@@ -1,3 +1,16 @@
 {
-  "message.examplemod.cannot_use_item": "Вы не можете использовать этот предмет (%s) без соответствующего класса!"
+  "message.examplemod.cannot_use_item": "Вы не можете использовать этот предмет (%s) без соответствующего класса!",
+
+  "screen.examplemod.race_class_selection.title": "Выбор расы и класса",
+  "gui.examplemod.confirm": "Подтвердить выбор",
+
+  "race.examplemod.pixie": "Пикси",
+  "race.examplemod.pixie.desc": "Маленькая летающая раса",
+  "race.examplemod.human": "Человек",
+  "race.examplemod.human.desc": "Стандартная раса",
+
+  "class.examplemod.mage": "Маг",
+  "class.examplemod.mage.desc": "Использует магию",
+  "class.examplemod.warrior": "Воин",
+  "class.examplemod.warrior.desc": "Мастер ближнего боя"
 }
